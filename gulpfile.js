@@ -75,7 +75,6 @@ gulp.task('babel', function() {
   ];
   try {
     return gulp.src(files)
-      .pipe(changed(DIST_ROOT + 'js/'))
       .pipe(process.env.PRODUCTION ? gutil.noop() : sourcemaps.init())
       .pipe(babel({
         modules: 'amd'
