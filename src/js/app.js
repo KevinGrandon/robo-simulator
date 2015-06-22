@@ -1,16 +1,17 @@
-/* global dat */
+import RoboBase from './js/robo-base.js';
 
-var RoboBase = function() {
-  this.name = 'Robot Base';
-  this.joints = 0;
+var renderer = new THREE.WebGLRenderer();
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
 
-  this.length = 50;
-  this.width = 20;
-};
+var camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000);
+camera.position.z = 400;
 
-var roboBase = new RoboBase();
-var gui = new dat.GUI();
-gui.add(roboBase, 'name');
-gui.add(roboBase, 'joints', 0, 99);
-gui.add(roboBase, 'length', 1, 99);
-gui.add(roboBase, 'width', 1, 99);
+var scene = new THREE.Scene();
+
+var roboBase = new RoboBase(scene);
+roboBase.renderMenu();
+roboBase.render();
+
+renderer.render(scene, camera);
