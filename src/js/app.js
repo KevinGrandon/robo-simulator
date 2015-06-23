@@ -14,4 +14,6 @@ var roboBase = new RoboBase(scene);
 roboBase.renderMenu();
 roboBase.render();
 
-renderer.render(scene, camera);
+setInterval(function() {
+	renderer.render(scene, camera);
+}, 100);

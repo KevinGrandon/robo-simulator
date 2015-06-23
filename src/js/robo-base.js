@@ -21,10 +21,15 @@ export default class RoboBase {
 	}
 
 	onChange() {
+		this.length = Math.round(this.length);
+		this.width = Math.round(this.width);
 		this.render();
 	}
 
 	render() {
+		if (this.rectMesh) {
+			this.scene.remove(this.rectMesh);
+		}
 		var rectShape = new THREE.Shape();
 		rectShape.moveTo(0, 0);
 		rectShape.lineTo(0, this.width);
@@ -33,8 +38,8 @@ export default class RoboBase {
 		rectShape.lineTo(0, 0);
 
 		var rectGeom = new THREE.ShapeGeometry(rectShape);
-		var rectMesh = new THREE.Mesh(rectGeom, new THREE.MeshBasicMaterial({ color: 0xff0000 }));
+		this.rectMesh = new THREE.Mesh(rectGeom, new THREE.MeshBasicMaterial({ color: 0xff0000 }));
 
-		this.scene.add(rectMesh);
+		this.scene.add(this.rectMesh);
 	}
 }
